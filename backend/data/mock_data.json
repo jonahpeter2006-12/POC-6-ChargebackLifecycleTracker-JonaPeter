@@ -1,0 +1,68 @@
+[
+  {
+    "case_id": "CB001",
+    "transaction_id": "TX1001",
+    "transaction_date": "2026-09-01",
+    "amount": 125.50,
+    "dispute_reason": "Fraudulent transaction",
+    "current_stage": "Dispute Filed",
+    "representment_status": "Not Started",
+    "final_outcome": "Pending",
+    "loss_amount": 0
+  },
+  {
+    "case_id": "CB002",
+    "transaction_id": "TX1002",
+    "transaction_date": "2026-09-03",
+    "amount": 89.99,
+    "dispute_reason": "Product not received",
+    "current_stage": "Merchant Response",
+    "representment_status": "Evidence Submitted",
+    "final_outcome": "Pending",
+    "loss_amount": 0
+  },
+  {
+    "case_id": "CB003",
+    "transaction_id": "TX1003",
+    "transaction_date": "2026-09-05",
+    "amount": 245.00,
+    "dispute_reason": "Fraudulent transaction",
+    "current_stage": "Representment",
+    "representment_status": "Submitted",
+    "final_outcome": "Won",
+    "loss_amount": 0
+  },
+  {
+    "case_id": "CB004",
+    "transaction_id": "TX1004",
+    "transaction_date": "2026-09-07",
+    "amount": 64.75,
+    "dispute_reason": "Duplicate charge",
+    "current_stage": "Final Decision",
+    "representment_status": "Submitted",
+    "final_outcome": "Lost",
+    "loss_amount": 64.75
+  },
+  {
+    "case_id": "CB005",
+    "transaction_id": "TX1005",
+    "transaction_date": "2026-09-10",
+    "amount": 310.00,
+    "dispute_reason": "Product not received",
+    "current_stage": "Final Decision",
+    "representment_status": "Evidence Submitted",
+    "final_outcome": "Won",
+    "loss_amount": 0
+  },
+  {
+    "case_id": "CB006",
+    "transaction_id": "TX1006",
+    "transaction_date": "2026-09-12",
+    "amount": 150.25,
+    "dispute_reason": "Fraudulent transaction",
+    "current_stage": "Chargeback",
+    "representment_status": "Not Started",
+    "final_outcome": "Lost",
+    "loss_amount": 150.25
+  }
+]
