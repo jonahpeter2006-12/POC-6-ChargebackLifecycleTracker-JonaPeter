@@ -24,6 +24,18 @@ type Summary = {
 };
 
 export default function Home() {
+    const downloadSampleData = () => {
+    const data = JSON.stringify(cases, null, 2);
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "chargeback_sample_data.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  };
   const [cases, setCases] = useState<ChargebackCase[]>([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [loading, setLoading] = useState(true);
@@ -690,7 +702,12 @@ if (error) {
               created for this proof of concept. Public sources provide
               contextual payment intelligence.
             </p>
-
+            <button
+              onClick={downloadSampleData}
+              className="mt-5 w-full rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm font-medium text-cyan-300 transition hover:bg-cyan-500/20"
+            >
+              Download Sample Data
+            </button>
           </div>
 
         </aside>

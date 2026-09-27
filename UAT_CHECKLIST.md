@@ -118,7 +118,57 @@ Result: PASS
 The current implementation satisfies the tested Phase 1 functional requirements.
 
 ## Known Limitations
+## Additional Phase 1 Validation
 
+| Test | Result |
+|---|---|
+| Tooltip behavior verified | PASS |
+| Loading state verified | PASS |
+| Backend unavailable error state verified | PASS |
+| Normal operation after backend restart verified | PASS |
+| Browser console checked after recovery | PASS |
+| Mobile/responsive layout verified | PASS |
+| Download Sample Data action verified | PASS |
+| Downloaded JSON contains all 6 chargeback cases | PASS |
+
+## Error Handling Validation
+
+The FastAPI backend was intentionally stopped to verify frontend behavior when the API is unavailable.
+
+Expected behavior:
+
+- Dashboard displays a clear unable-to-load message.
+- User is instructed to ensure the FastAPI backend is running.
+- No application crash occurs.
+
+Result: PASS
+
+The FastAPI backend was then restarted and the dashboard successfully recovered. The previous `Failed to fetch` console error was no longer present during normal operation.
+
+Result: PASS
+
+## Download Validation
+
+The Download Sample Data action was tested successfully.
+
+The downloaded JSON file contained all six synthetic chargeback cases:
+
+- CB001
+- CB002
+- CB003
+- CB004
+- CB005
+- CB006
+
+Result: PASS
+
+## Responsive Validation
+
+The dashboard was tested using browser mobile/device emulation.
+
+The interface remained usable with vertically stacked sections, readable content, accessible filters, and no major overlapping elements.
+
+Result: PASS
 The event-level chargeback dataset is synthetic and is intended for proof-of-concept demonstration.
 
 Public sources provide contextual payment intelligence and are not represented as the source of the synthetic case records.
