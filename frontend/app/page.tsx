@@ -27,7 +27,7 @@ export default function Home() {
   const [cases, setCases] = useState<ChargebackCase[]>([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [loading, setLoading] = useState(true);
-
+const [error, setError] = useState<string | null>(null);
   const [reasonFilter, setReasonFilter] = useState("All");
   const [stageFilter, setStageFilter] = useState("All");
   const [outcomeFilter, setOutcomeFilter] = useState("All");
@@ -46,8 +46,11 @@ export default function Home() {
         setCases(casesData);
         setSummary(summaryData);
       } catch (error) {
-        console.error("Failed to load chargeback data:", error);
-      } finally {
+  console.error("Failed to load chargeback data:", error);
+  setError(
+    "Unable to load chargeback intelligence. Please make sure the FastAPI backend is running and try again."
+  );
+} finally {
         setLoading(false);
       }
     }
@@ -121,7 +124,21 @@ const stageCounts = filteredCases.reduce(
       </main>
     );
   }
+if (error) {
+  return (
+    <main className="min-h-screen bg-[#030712] text-white flex items-center justify-center p-6">
+      <div className="max-w-lg rounded-2xl border border-red-500/30 bg-gray-900/70 p-8 text-center">
+        <h1 className="text-xl font-semibold text-red-400">
+          Unable to Load Chargeback Intelligence
+        </h1>
 
+        <p className="mt-3 text-sm leading-6 text-gray-400">
+          {error}
+        </p>
+      </div>
+    </main>
+  );
+}
   return (
     <main className="min-h-screen bg-[#030712] text-white">
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -295,16 +312,27 @@ const stageCounts = filteredCases.reduce(
 
                       </div>
 
-                      <div className="h-3 overflow-hidden rounded-full bg-gray-800">
+                      <div
+  className="group relative h-3 overflow-hidden rounded-full bg-gray-800"
+  title={`${reason}: ${count} ${
+    count === 1 ? "case" : "cases"
+  } (${percentage.toFixed(1)}%)`}
+>
+  <div
+    className="h-full rounded-full bg-cyan-400 transition-all duration-500"
+    style={{
+      width: `${percentage}%`,
+    }}
+  />
 
-                        <div
-                          className="h-full rounded-full bg-cyan-400 transition-all duration-500"
-                          style={{
-                            width: `${percentage}%`,
-                          }}
-                        />
-
-                      </div>
+  <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-lg border border-gray-700 bg-gray-950 px-3 py-2 text-xs text-white shadow-lg group-hover:block">
+    <div className="font-semibold">{reason}</div>
+    <div className="text-gray-400">
+      {count} {count === 1 ? "case" : "cases"} ·{" "}
+      {percentage.toFixed(1)}%
+    </div>
+  </div>
+</div>
 
                     </div>
                   );
